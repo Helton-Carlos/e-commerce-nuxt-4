@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-center font-bold text-8xl text-red-800">teste</h1>
+    <h1 class="text-center font-bold text-8xl text-white">teste</h1>
 
     <button class="btn btn-neutral">Neutral</button>
     <button class="btn btn-primary">Primary</button>
