@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { ICard } from '@/types/card.types';
+import type { Product } from '@/types/card.types';
 
-defineProps<ICard>();
+defineProps<Product>();
 
 defineEmits(['buy']);
 </script>
@@ -9,7 +9,7 @@ defineEmits(['buy']);
 <template>
   <div class="bg-base-100 w-full shadow-sm lg:w-96">
     <figure>
-      <img :src="imageUrl" :alt="title" />
+      <img :src="Array.isArray(images) ? images[0] : images" :alt="title" />
     </figure>
 
     <div class="card-body gap-4">
@@ -22,7 +22,7 @@ defineEmits(['buy']);
       </p>
 
       <div class="card-actions justify-end">
-        <div class="badge badge-outline">{{ type }}</div>
+        <div class="badge badge-outline">{{ category }}</div>
       </div>
 
       <button class="btn btn-primary" @click="$emit('buy')">Comprar</button>

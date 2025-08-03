@@ -1,37 +1,14 @@
 <script setup lang="ts">
-import type { ICard } from '@/types/card.types';
+import { useApi } from '~/composable/api';
+import type { Product } from '~/types/card.types';
 
-const cards = ref<ICard[]>([
-  {
-    id: '1',
-    title: 'Card Title 1',
-    description:
-      'A card component has a figure, a body part, and inside body there are title and actions parts',
-    imageUrl:
-      'https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp',
-    type: 'Masculina',
-  },
-  {
-    id: '2',
-    title: 'Card Title 2',
-    description:
-      'A card component has a figure, a body part, and inside body there are title and actions parts',
-    imageUrl:
-      'https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp',
-    type: 'Feminina',
-  },
-  {
-    id: '3',
-    title: 'Card Title 3',
-    description:
-      'A card component has a figure, a body part, and inside body there are title and actions parts',
-    imageUrl:
-      'https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp',
-    type: 'Feminina',
-  },
-]);
+const { get } = useApi();
 
-async function buy(id: string | undefined) {
+const { data } = await useAsyncData<Product[]>('produtos', () =>
+  get('/produtos'),
+);
+
+async function buy(id: number | undefined) {
   console.log(id);
 }
 </script>
@@ -45,13 +22,13 @@ async function buy(id: string | undefined) {
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <CardBuy
-          v-for="card in cards"
+          v-for="card in data ?? []"
           :key="card.id"
           :index="card.id"
           :title="card.title"
           :description="card.description"
-          :imageUrl="card.imageUrl"
-          :type="card.type"
+          :images="card.images"
+          :category="card.category"
           @buy="buy(card.id)"
         />
       </div>
