@@ -10,5 +10,9 @@
 }
 
 body {
-  @apply bg-black h-svh
+  @apply bg-black h-full
+}
+
+.container {
+  @apply w-[90%] mx-auto;
 }
