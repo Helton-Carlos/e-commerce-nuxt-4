@@ -11,8 +11,8 @@ export interface Product {
   id?: number
   title: string
   slug?: string
-  price?: number
-  description: string
+  price?: number | string
+  description?: string
   category: Category
   images: string[]
   creationAt?: string

@@ -5,12 +5,14 @@ import type { Product } from '~/types/card.types';
 const { get } = useApi();
 
 const { data } = await useAsyncData<Product[]>('produtos', () =>
-  get('/produtos'),
+  get('/products'),
 );
 
 async function buy(id: number | undefined) {
   console.log(id);
 }
+
+const cards = computed(() => data.value?.slice(0, 6) ?? []);
 </script>
 
 <template>
@@ -22,11 +24,11 @@ async function buy(id: number | undefined) {
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <CardBuy
-          v-for="card in data ?? []"
+          v-for="card in cards ?? []"
           :key="card.id"
           :index="card.id"
           :title="card.title"
-          :description="card.description"
+          :price="card.price"
           :images="card.images"
           :category="card.category"
           @buy="buy(card.id)"
