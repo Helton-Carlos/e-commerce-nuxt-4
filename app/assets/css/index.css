@@ -10,7 +10,7 @@
 }
 
 body {
-  @apply bg-black h-full
+  @apply bg-slate-900 h-full
 }
 
 .container {
