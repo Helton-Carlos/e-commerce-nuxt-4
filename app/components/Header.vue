@@ -1,3 +1,17 @@
+<script setup lang="ts">
+import { useUserStore } from '~/store/user';
+
+const userStore = useUserStore();
+
+onMounted(() => {
+  userStore.setUser({
+    id: 1,
+    name: 'Maria da Silva',
+    email: 'maria@example.com',
+  });
+});
+</script>
+
 <template>
   <header>
     <nav class="bg-black shadow-sm">
@@ -6,7 +20,7 @@
           <h1 class="text-2xl font-bold">E-commerce Store</h1>
         </div>
 
-        <div class="flex-none">
+        <div class="flex gap-4">
           <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
               <div class="indicator">
@@ -40,6 +54,7 @@
               </div>
             </div>
           </div>
+
           <div class="dropdown dropdown-end">
             <div
               tabindex="0"
@@ -57,10 +72,9 @@
               tabindex="0"
               class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li>
+              <li class="text-xl">
                 <a class="justify-between">
-                  Profile
-                  <span class="badge">New</span>
+                  Profile: {{ userStore.user?.name }}
                 </a>
               </li>
               <li><a>Settings</a></li>
