@@ -2,8 +2,8 @@
   <header>
     <nav class="bg-black shadow-sm">
       <div class="container flex items-center justify-between py-4">
-        <div class="flex-1">
-          <h1 class="mb-5 text-2xl font-bold">E-commerce Store</h1>
+        <div>
+          <h1 class="text-2xl font-bold">E-commerce Store</h1>
         </div>
 
         <div class="flex-none">
