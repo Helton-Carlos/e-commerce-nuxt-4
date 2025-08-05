@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUserStore } from '~/store/user';
+import { useUserStore } from '~/stores/user';
 
 const userStore = useUserStore();
 
@@ -16,9 +16,9 @@ onMounted(() => {
   <header>
     <nav class="bg-black shadow-sm">
       <div class="container flex items-center justify-between py-4">
-        <div>
-          <h1 class="text-2xl font-bold">E-commerce Store</h1>
-        </div>
+        <NuxtLink to="/" class="text-2xl font-bold">
+          E-commerce Store
+        </NuxtLink>
 
         <div class="flex gap-4">
           <div class="dropdown dropdown-end">
@@ -76,6 +76,9 @@ onMounted(() => {
                 <a class="justify-between">
                   Profile: {{ userStore.user?.name }}
                 </a>
+              </li>
+              <li>
+                <NuxtLink to="/login">Login</NuxtLink>
               </li>
               <li><a>Settings</a></li>
               <li><a>Logout</a></li>
