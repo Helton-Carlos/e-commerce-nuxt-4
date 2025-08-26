@@ -1,75 +1,19 @@
-# Nuxt Minimal Starter
+# Nuxt 4, Typescript e Biblioteca adicionais.
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+**💬 About.** 
 
-## Setup
+Projeto E-commerce: Nuxt 4, Typescript e Biblioteca adicionais.
 
-Make sure to install dependencies:
+**👇 Follow the steps.** 
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+git clone git@github.com:Helton-Carlos/e-commerce-nuxt-4.git
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+```bash
+npm i 
+```
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
