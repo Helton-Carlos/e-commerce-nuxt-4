@@ -1,0 +1,54 @@
+export default defineEventHandler(async (event) => {
+  const body = await readBody(event);
+  const { email, password, turnstileToken } = body;
+
+  // Validar campos obrigatórios
+  if (!email || !password || !turnstileToken) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Email, senha e token de verificação são obrigatórios',
+    });
+  }
+
+  try {
+    // Primeiro, validar o token do Turnstile
+    const turnstileValidation = await $fetch('/api/auth/verify-turnstile', {
+      method: 'POST',
+      body: { token: turnstileToken },
+    });
+
+    // Aqui você faria a validação real do usuário
+    // Exemplo simples para demonstração
+    if (email === 'admin@example.com' && password === 'password123') {
+      // Gerar JWT ou token de sessão
+      const token = 'jwt-token-example-' + Date.now();
+
+      return {
+        success: true,
+        token,
+        user: {
+          id: 1,
+          email,
+          name: 'Usuário Admin',
+        },
+      };
+    } else {
+      throw createError({
+        statusCode: 401,
+        statusMessage: 'Credenciais inválidas',
+      });
+    }
+  } catch (error) {
+    console.error('Erro no login:', error);
+
+    // Type guard para verificar se é um erro com statusCode
+    if (error && typeof error === 'object' && 'statusCode' in error) {
+      throw error;
+    }
+
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Erro interno do servidor',
+    });
+  }
+});
