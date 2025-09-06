@@ -16,18 +16,22 @@ defineEmits(['buy']);
       />
     </figure>
 
-    <div class="card-body gap-4">
-      <h2 class="card-title">
-        {{ title }}
-        <div class="badge badge-secondary">NEW</div>
-      </h2>
-
-      <div class="card-actions justify-end">
-        <p>{{ maskPrice(price ?? 0) }}</p>
-        <div class="badge badge-outline">{{ category.name }}</div>
+    <div class="card-body">
+      <div class="flex justify-between items-center gap-2">
+        <h2 class="card-title">
+          {{ title }}
+        </h2>
+        <span class="badge badge-secondary my-2">NEW</span>
       </div>
 
-      <button class="btn btn-primary" @click="$emit('buy')">Comprar</button>
+      <div class="card-actions justify-end">
+        <p class="text-base">{{ maskPrice(price ?? 0) }}</p>
+        <span class="badge badge-outline">{{ category.name }}</span>
+      </div>
+
+      <div>
+        <button class="btn btn-primary" @click="$emit('buy')">Comprar</button>
+      </div>
     </div>
   </div>
 </template>
