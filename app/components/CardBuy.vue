@@ -2,8 +2,19 @@
 import type { Product } from '@/types/card.types';
 
 defineProps<Product>();
-
 defineEmits(['buy']);
+
+const aside = ref<boolean>(false);
+const code = ref<number | undefined>(undefined);
+
+async function buy(id: number | undefined) {
+  openAside(id);
+}
+
+function openAside(id: number | undefined) {
+  aside.value = !aside.value;
+  code.value = id;
+}
 </script>
 
 <template>
@@ -30,8 +41,9 @@ defineEmits(['buy']);
       </div>
 
       <div>
-        <button class="btn btn-primary" @click="$emit('buy')">Comprar</button>
+        <button class="btn btn-primary" @click="buy(id)">Comprar</button>
       </div>
+      <Aside v-if="aside" :id="code" @close="openAside" />
     </div>
   </div>
 </template>

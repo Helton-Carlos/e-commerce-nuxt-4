@@ -8,7 +8,7 @@ export interface Category {
 }
 
 export interface Product {
-  id?: number
+  id: number
   title: string
   slug?: string
   price?: number | string

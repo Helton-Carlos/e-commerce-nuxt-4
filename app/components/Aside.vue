@@ -1,5 +1,9 @@
 <script setup lang="ts">
 defineEmits(['close']);
+
+defineProps({
+  id: Number || undefined,
+});
 </script>
 
 <template>
@@ -12,7 +16,7 @@ defineEmits(['close']);
     </div>
 
     <ul class="menu p-4 space-y-2">
-      <li>Sidebar Item 1</li>
+      <li>Sidebar Item {{ id }}</li>
     </ul>
   </aside>
 </template>

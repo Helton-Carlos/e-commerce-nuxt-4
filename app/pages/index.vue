@@ -4,21 +4,9 @@ import type { Product } from '~/types/card.types';
 
 const { get } = useApi();
 
-const aside = ref<boolean>(false);
-
 const { data } = await useAsyncData<Product[]>('produtos', () =>
   get('/products'),
 );
-
-async function buy(id: number | undefined) {
-  console.log(id);
-
-  openAside();
-}
-
-function openAside() {
-  aside.value = !aside.value;
-}
 
 const cards = computed(() => data.value?.slice(0, 6) ?? []);
 </script>
@@ -34,14 +22,12 @@ const cards = computed(() => data.value?.slice(0, 6) ?? []);
         <CardBuy
           v-for="card in cards ?? []"
           :key="card.id"
-          :index="card.id"
+          :id="card.id"
           :title="card.title"
           :price="card.price"
           :images="card.images"
           :category="card.category"
-          @buy="buy(card.id)"
         />
-        <Aside v-if="aside" @close="openAside" />
       </div>
     </section>
   </div>
