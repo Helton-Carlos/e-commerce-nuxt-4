@@ -10,6 +10,7 @@ defineEmits(['close']);
       <h2 class="text-lg font-bold">Produto</h2>
       <button @click="$emit('close')" class="btn btn-sm btn-ghost">✕</button>
     </div>
+
     <ul class="menu p-4 space-y-2">
       <li>Sidebar Item 1</li>
     </ul>
