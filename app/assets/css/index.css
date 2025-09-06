@@ -9,10 +9,6 @@
   box-sizing: border-box;
 }
 
-body {
-  @apply bg-slate-900 h-full
-}
-
 .container {
   @apply w-[90%] mx-auto;
 }
