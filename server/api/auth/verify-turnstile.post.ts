@@ -18,7 +18,6 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    // Validar o token com a API do Cloudflare
     const response = await $fetch(
       'https://challenges.cloudflare.com/turnstile/v0/siteverify',
       {
