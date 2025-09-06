@@ -7,13 +7,20 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
+    '@nuxtjs/turnstile'
   ],
 
   css: ['@/assets/css/index.css'],
 
   runtimeConfig: {
+    turnstile: {
+      secretKey: process.env.TURNSTILE_SECRET_KEY, 
+    },
     public: {
       apiUrl: process.env.API_URL,
+      turnstile: {
+        siteKey: process.env.TURNSTILE_SITE_KEY, 
+      }
     },
   }
 })

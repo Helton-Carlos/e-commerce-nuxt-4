@@ -1,115 +1,16 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
-import { useTurnstile } from '~/composable/useTurnstile';
+import { ref } from 'vue';
 
 const email = ref('');
 const password = ref('');
 const isLoading = ref(false);
 const errorMessage = ref('');
-const showTurnstile = ref(false);
-
-// Configuração do Turnstile
-const {
-  turnstileToken,
-  isLoaded,
-  loadTurnstileScript,
-  renderTurnstile,
-  resetTurnstile,
-  removeTurnstile,
-} = useTurnstile();
-
-// Substitua pela sua chave do site Cloudflare Turnstile
-const TURNSTILE_SITE_KEY =
-  process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
-
-onMounted(async () => {
-  try {
-    // Apenas carrega o script, não renderiza o widget ainda
-    await loadTurnstileScript();
-  } catch (error) {
-    console.error('Erro ao carregar Turnstile:', error);
-    errorMessage.value = 'Erro ao carregar verificação de segurança.';
-  }
-});
-
-onUnmounted(() => {
-  removeTurnstile();
-});
+const turnstileToken = ref('');
 
 async function handleLogin() {
-  // Validação inicial dos campos
   if (!email.value || !password.value) {
     errorMessage.value = 'Preencha o email e a senha!';
     return;
-  }
-
-  // Se o Turnstile ainda não foi mostrado, mostra agora
-  if (!showTurnstile.value) {
-    showTurnstile.value = true;
-    errorMessage.value = '';
-
-    // Aguarda o DOM atualizar e renderiza o widget
-    await nextTick();
-
-    renderTurnstile('turnstile-widget', {
-      sitekey: TURNSTILE_SITE_KEY,
-      theme: 'auto',
-      size: 'normal',
-      callback: async (token: string) => {
-        console.log('Turnstile token recebido:', token);
-        errorMessage.value = '';
-        // Automaticamente faz o login quando o CAPTCHA é completado
-        await proceedWithLogin(token);
-      },
-      'error-callback': () => {
-        errorMessage.value = 'Erro na verificação do CAPTCHA. Tente novamente.';
-        isLoading.value = false;
-      },
-      'expired-callback': () => {
-        errorMessage.value = 'CAPTCHA expirado. Por favor, complete novamente.';
-        isLoading.value = false;
-      },
-    });
-
-    isLoading.value = true;
-    return;
-  }
-
-  // Se já tem token, procede com o login
-  if (turnstileToken.value) {
-    await proceedWithLogin(turnstileToken.value);
-  } else {
-    errorMessage.value = 'Complete a verificação de segurança!';
-  }
-}
-
-async function proceedWithLogin(token: string) {
-  isLoading.value = true;
-  errorMessage.value = '';
-
-  try {
-    const response = await $fetch('/api/auth/login', {
-      method: 'POST',
-      body: {
-        email: email.value,
-        password: password.value,
-        turnstileToken: token,
-      },
-    });
-
-    if (response.success) {
-      localStorage.setItem('token', response.token);
-      localStorage.setItem('user', JSON.stringify(response.user));
-      await navigateTo('/dashboard');
-    }
-  } catch (error: any) {
-    console.error('Erro no login:', error);
-    errorMessage.value =
-      error.data?.message || 'Erro ao fazer login. Tente novamente.';
-    resetTurnstile();
-    showTurnstile.value = false; // Permite tentar novamente
-  } finally {
-    isLoading.value = false;
   }
 }
 </script>
@@ -121,7 +22,6 @@ async function proceedWithLogin(token: string) {
     >
       <legend class="fieldset-legend text-lg py-4">Login</legend>
 
-      <!-- Mensagem de erro -->
       <div v-if="errorMessage" class="alert alert-error mb-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -160,33 +60,26 @@ async function proceedWithLogin(token: string) {
         @keyup.enter="handleLogin"
       />
 
-      <!-- Widget do Cloudflare Turnstile - só aparece quando necessário -->
-      <div v-if="showTurnstile" class="mt-4">
-        <label class="label">Verificação de Segurança</label>
-        <div id="turnstile-widget" class="flex justify-center"></div>
-        <div class="text-xs text-gray-500 mt-2 text-center">
-          Complete a verificação para continuar
-        </div>
-      </div>
+      <NuxtTurnstile
+        class="mx-auto mt-4"
+        v-model="turnstileToken"
+        :options="{
+          theme: 'auto',
+          size: 'normal',
+          action: 'login',
+          language: 'pt-BR',
+        }"
+      />
 
       <button
         type="button"
         class="btn btn-primary mt-4 w-full"
         :class="{ loading: isLoading }"
-        :disabled="isLoading"
+        :disabled="!turnstileToken || isLoading"
         @click="handleLogin"
       >
-        <span v-if="!isLoading && !showTurnstile">Entrar</span>
-        <span v-else-if="!isLoading && showTurnstile"
-          >Aguardando verificação...</span
-        >
-        <span v-else>Entrando...</span>
+        <span>Entrar</span>
       </button>
-
-      <!-- Informação sobre o CAPTCHA -->
-      <div class="text-xs text-gray-500 mt-2 text-center">
-        Este site é protegido pelo Cloudflare Turnstile
-      </div>
     </fieldset>
   </div>
 </template>
