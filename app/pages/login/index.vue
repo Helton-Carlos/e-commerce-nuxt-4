@@ -6,12 +6,15 @@ const password = ref('');
 const isLoading = ref(false);
 const errorMessage = ref('');
 const turnstileToken = ref('');
+const turnstileRef = ref();
 
 async function handleLogin() {
-  if (!email.value || !password.value) {
+  if (!email.value || !password.value || !turnstileToken.value) {
     errorMessage.value = 'Preencha o email e a senha!';
     return;
   }
+
+  turnstileRef.value.reset();
 }
 </script>
 
@@ -61,6 +64,7 @@ async function handleLogin() {
       />
 
       <NuxtTurnstile
+        ref="turnstileRef"
         class="mx-auto mt-4"
         v-model="turnstileToken"
         :options="{
