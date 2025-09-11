@@ -14,6 +14,7 @@ async function handleLogin() {
     return;
   }
 
+  navigateTo('/dashboard');
   turnstileRef.value.reset();
 }
 </script>
