@@ -40,7 +40,7 @@ function buyProduct(product: Product) {
 
       <div class="drawer">
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-        <button class="drawer-content">
+        <button class="drawer-content flex justify-start">
           <label
             for="my-drawer"
             class="btn btn-primary drawer-button"
