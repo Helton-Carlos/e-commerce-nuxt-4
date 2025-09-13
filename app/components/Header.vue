@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user';
 import type { CartItem } from '@/types/cart.types';
+import { useSafeLocalStorage } from '~/composable/localStorage';
 
 const userStore = useUserStore();
 
-const carts = computed(() =>
-  localStorage.getItem('cart')
-    ? (JSON.parse(localStorage.getItem('cart') as string) as CartItem[])
-    : [],
-);
+const carts = useSafeLocalStorage<CartItem[]>('cart', []);
 
 onMounted(() => {
   userStore.setUser({
