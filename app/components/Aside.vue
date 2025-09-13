@@ -1,7 +1,18 @@
 <script setup lang="ts">
-const { product } = useProductStore();
+const productStore = useProductStore();
+const { product } = storeToRefs(productStore);
 
-const checked = ref(false);
+const unit = ref(1);
+
+const increment = () => {
+  unit.value++;
+};
+
+const decrement = () => {
+  if (unit.value > 1) {
+    unit.value--;
+  }
+};
 </script>
 
 <template>
@@ -25,50 +36,33 @@ const checked = ref(false);
         />
       </figure>
 
-      <h3 class="text-base py-4">{{ product?.title }}</h3>
+      <h3 class="text-base mt-4 capitalize">{{ product?.title }}</h3>
 
-      <div class="mb-2">
-        <span class="badge badge-outline">{{ product?.category.name }}</span>
-      </div>
+      <span class="badge badge-outline my-4">{{ product?.category.name }}</span>
 
       <div>
-        <p class="text-lg">Valor: {{ maskPrice(product?.price ?? 0) }}</p>
+        <p class="text-lg">
+          Preço:
+          <span class="font-bold">{{ maskPrice(product?.price ?? 0) }}</span>
+        </p>
 
-        <div class="rating my-4">
-          <input
-            type="radio"
-            name="rating-2"
-            class="mask mask-star-2 bg-orange-400"
-            aria-label="1 star"
-          />
-          <input
-            type="radio"
-            name="rating-2"
-            class="mask mask-star-2 bg-orange-400"
-            aria-label="2 star"
-            :checked="checked"
-          />
-          <input
-            type="radio"
-            name="rating-2"
-            class="mask mask-star-2 bg-orange-400"
-            aria-label="3 star"
-          />
-          <input
-            type="radio"
-            name="rating-2"
-            class="mask mask-star-2 bg-orange-400"
-            aria-label="4 star"
-          />
-          <input
-            type="radio"
-            name="rating-2"
-            class="mask mask-star-2 bg-orange-400"
-            aria-label="5 star"
-          />
+        <div class="mb-2 flex flex-col mt-4">
+          <span class="text-sm">unit:</span>
+
+          <div class="flex justify-between items-center mt-4">
+            <button class="btn btn-error px-4" @click="decrement">-</button>
+
+            <input
+              class="flex-1 py-2 mx-1 text-center"
+              type="number"
+              name="item"
+              id="item"
+              v-model="unit"
+            />
+
+            <button class="btn btn-success px-4" @click="increment">+</button>
+          </div>
         </div>
-
-        <div>Unidade:</div>
       </div>
     </div>
   </div>

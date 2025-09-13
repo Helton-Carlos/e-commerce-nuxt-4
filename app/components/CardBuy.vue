@@ -2,23 +2,15 @@
 import type { Product } from '@/types/card.types';
 import { useProductStore } from '~/stores/product';
 
-defineEmits(['buy']);
-
-const props = defineProps<{
+defineProps<{
   product: Product;
 }>();
 
 const productStore = useProductStore();
 
-watch(
-  () => props.product,
-  (newProduct) => {
-    if (newProduct) {
-      productStore.product = newProduct;
-    }
-  },
-  { immediate: true },
-);
+function buyProduct(product: Product) {
+  productStore.setProduct(product);
+}
 </script>
 
 <template>
@@ -49,7 +41,11 @@ watch(
       <div class="drawer">
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <button class="drawer-content">
-          <label for="my-drawer" class="btn btn-primary drawer-button">
+          <label
+            for="my-drawer"
+            class="btn btn-primary drawer-button"
+            @click="buyProduct(product)"
+          >
             Comprar
           </label>
         </button>
