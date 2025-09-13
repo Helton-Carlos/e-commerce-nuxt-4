@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Product } from '@/types/card.types';
-import { useProductStore } from '~/stores/product';
+import { useProductStore } from '@/stores/product';
 
 defineProps<{
   product: Product;

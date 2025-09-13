@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { Product } from '~/types/card.types';
+import type { Product } from '@/types/card.types';
 
 export const useProductStore = defineStore('product', () => {
   const product = ref(null as null | Product)

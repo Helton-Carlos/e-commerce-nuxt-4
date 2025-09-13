@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useApi } from '~/composable/api';
-import type { Product } from '~/types/card.types';
+import { useApi } from '@/composable/api';
+import type { Product } from '@/types/card.types';
 
 const { get } = useApi();
 
