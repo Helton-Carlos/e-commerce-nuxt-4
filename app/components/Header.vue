@@ -4,16 +4,11 @@ import type { CartItem } from '@/types/cart.types';
 
 const userStore = useUserStore();
 
-const carts = ref<CartItem[]>([
-  {
-    id: 1,
-    title: 'Camisa',
-    price: 120,
-    quantity: 2,
-    image:
-      'https://http2.mlstatic.com/D_NQ_NP_884297-MLB83945200984_042025-O-camiseta-branca-unissex-100-algodo-premium-camisa-basica.webp',
-  },
-]);
+const carts = computed(() =>
+  localStorage.getItem('cart')
+    ? (JSON.parse(localStorage.getItem('cart') as string) as CartItem[])
+    : [],
+);
 
 onMounted(() => {
   userStore.setUser({
@@ -34,14 +29,7 @@ onMounted(() => {
 
         <div class="flex gap-4">
           <div class="dropdown dropdown-end">
-            <Cart
-              v-for="cart in carts"
-              :id="cart.id"
-              :title="cart.title"
-              :price="cart.price"
-              :quantity="cart.quantity"
-              :image="cart.image"
-            />
+            <Cart :carts="carts" />
           </div>
 
           <div class="dropdown dropdown-end">

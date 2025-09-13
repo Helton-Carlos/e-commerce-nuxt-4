@@ -1,7 +1,10 @@
+import type { Category } from './card.types';
+
 export interface CartItem {
   id?: number;
   title: string;
   price: number;
-  quantity: number;
-  image: string;
+  unit: number;
+  category: Category
+  images: string[]
 }

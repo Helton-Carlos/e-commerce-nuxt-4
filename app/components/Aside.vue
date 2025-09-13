@@ -4,15 +4,35 @@ const { product } = storeToRefs(productStore);
 
 const unit = ref(1);
 
-const increment = () => {
+function increment() {
   unit.value++;
-};
+}
 
-const decrement = () => {
+function decrement() {
   if (unit.value > 1) {
     unit.value--;
   }
-};
+}
+
+function addCart() {
+  const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
+  const cartArray = Array.isArray(existingCart) ? existingCart : [];
+
+  const newItem = {
+    ...product.value,
+    unit: unit.value,
+  };
+
+  const index = cartArray.findIndex((item) => item.id === newItem.id);
+
+  if (index !== -1) {
+    cartArray[index] = newItem;
+  } else {
+    cartArray.push(newItem);
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cartArray));
+}
 </script>
 
 <template>
@@ -36,9 +56,13 @@ const decrement = () => {
         />
       </figure>
 
-      <h3 class="text-base mt-4 capitalize">{{ product?.title }}</h3>
+      <h3 class="text-base mt-2 capitalize">{{ product?.title }}</h3>
 
-      <span class="badge badge-outline my-4">{{ product?.category.name }}</span>
+      <div class="my-2">
+        <p class="badge badge-outline">{{ product?.category.name }}</p>
+
+        <p class="mt-2">Descrição: {{ product?.description }}</p>
+      </div>
 
       <div>
         <p class="text-lg">
@@ -46,10 +70,10 @@ const decrement = () => {
           <span class="font-bold">{{ maskPrice(product?.price ?? 0) }}</span>
         </p>
 
-        <div class="mb-2 flex flex-col mt-4">
-          <span class="text-sm">unit:</span>
+        <div class="flex flex-col my-2">
+          <span class="text-sm">Unidade(s):</span>
 
-          <div class="flex justify-between items-center mt-4">
+          <div class="flex justify-between items-center my-4">
             <button class="btn btn-error px-4" @click="decrement">-</button>
 
             <input
@@ -62,6 +86,10 @@ const decrement = () => {
 
             <button class="btn btn-success px-4" @click="increment">+</button>
           </div>
+
+          <button class="btn btn-primary" @click="addCart">
+            Adicionar no carrinho
+          </button>
         </div>
       </div>
     </div>
