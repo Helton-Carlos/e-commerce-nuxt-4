@@ -1,7 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+definePageMeta({
+  middleware: 'auth',
+});
+</script>
 
 <template>
-  <div>
-    <h2>Dashboard</h2>
+  <div class="container my-10">
+    <h2 class="text-2xl font-bold">Dashboard</h2>
   </div>
 </template>
