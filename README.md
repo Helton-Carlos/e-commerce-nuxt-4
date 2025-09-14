@@ -19,4 +19,5 @@ npm run dev
 ```
 
 **👇 Image.** 
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/29a3ebac-80e4-4857-aefd-fcb0296b501b" />
+<img width="1422" height="1070" alt="image" src="https://github.com/user-attachments/assets/8095db27-2ba1-46cf-a6c2-af6a4405d054" />
+
