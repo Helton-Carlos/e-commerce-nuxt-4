@@ -1,23 +1,31 @@
 # Nuxt 4, Typescript e Biblioteca adicionais.
 
-**💬 About.** 
+**💬 About.**
 
 Projeto E-commerce: Nuxt 4, Typescript e Biblioteca adicionais.
 
-**👇 Follow the steps.** 
+**👇 Follow the steps.**
 
 ```bash
 git clone git@github.com:Helton-Carlos/e-commerce-nuxt-4.git
 ```
 
 ```bash
-npm i 
+npm i
 ```
 
 ```bash
 npm run dev
 ```
 
-**👇 Image.** 
-<img width="1422" height="1070" alt="image" src="https://github.com/user-attachments/assets/8095db27-2ba1-46cf-a6c2-af6a4405d054" />
+Dentro do arquivo .env adicione suas chaves do Cloudflare Turnstile.
+Pode usar essa a nível de exemplo:
 
+```bash
+TURNSTILE_SITE_KEY  = '1x00000000000000000000AA'
+TURNSTILE_SECRET_KEY  = '1x0000000000000000000000000000000AA'
+```
+
+**👇 Image.**
+
+<img width="1422" height="1070" alt="image" src="https://github.com/user-attachments/assets/8095db27-2ba1-46cf-a6c2-af6a4405d054" />
