@@ -48,7 +48,7 @@ defineProps<{
 
       <div class="card-body -m-4 mb-1">
         <span class="text-lg font-bold">{{ carts.length }} Items</span>
-        <span class="text-info">Total: {{ maskPrice(200) }} </span>
+        <span class="text-info">Total: {{ maskPrice(205) }} </span>
         <div class="card-actions">
           <button class="btn btn-primary btn-block">Visualizar</button>
         </div>

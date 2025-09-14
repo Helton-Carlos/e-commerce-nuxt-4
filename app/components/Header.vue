@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useUserStore } from '@/stores/user';
 import type { CartItem } from '@/types/cart.types';
 import { useSafeLocalStorage } from '~/composable/localStorage';
 
@@ -10,8 +9,8 @@ const carts = useSafeLocalStorage<CartItem[]>('cart', []);
   <header>
     <nav class="bg-black shadow-sm">
       <div class="container flex items-center justify-between py-4">
-        <NuxtLink to="/" class="text-2xl font-bold">
-          E-commerce Store
+        <NuxtLink to="/" class="text-2xl font-bold flex items-center gap-2">
+          <img src="/logo.png" width="33" /> E-commerce Store
         </NuxtLink>
 
         <div class="flex gap-4">
