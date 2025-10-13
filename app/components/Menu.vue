@@ -19,6 +19,9 @@ const { isAuthenticated } = useUserStore();
       <li class="text-xl">
         <NuxtLink to="/login">Login</NuxtLink>
       </li>
+       <li v-if="!isAuthenticated" class="text-xl">
+        <NuxtLink to="/register">Cadastrar</NuxtLink>
+      </li>
       <div v-if="isAuthenticated">
         <li class="text-xl"><a>Perfil</a></li>
         <li class="text-xl"><a>Configuração</a></li>
