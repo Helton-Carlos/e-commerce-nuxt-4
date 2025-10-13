@@ -29,7 +29,7 @@ TURNSTILE_SECRET_KEY  = '1x0000000000000000000000000000000AA'
 Adicione também a API de teste:
 
 ```bash
-API_URL = 'https://api.escuelajs.co/api/v1/'
+API_URL = 'https://api.escuelajs.co/api/v1'
 ```
 **👇 Image.**
 
