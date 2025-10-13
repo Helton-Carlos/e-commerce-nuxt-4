@@ -1,4 +1,4 @@
-export function useSafeLocalStorage<T>(key: string, defaultValue: T) {
+export function useLocalStorage<T>(key: string, defaultValue: T) {
   const data = ref<T>(defaultValue);
 
   onMounted(() => {
