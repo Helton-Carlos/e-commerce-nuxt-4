@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useApi } from '@/composable/api';
-import type { Product } from '@/types/card.types';
+import { useApi } from "@/composable/useApi";
+import type { Product } from "@/types/card.types";
 
 const { get } = useApi();
 
-const { data } = await useAsyncData<Product[]>('produtos', () =>
-  get('/products'),
+const { data } = await useAsyncData<Product[]>("produtos", () =>
+  get("/products")
 );
 
 const cards = computed(() => data.value?.slice(0, 6) ?? []);

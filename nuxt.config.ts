@@ -1,27 +1,29 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
-  
+  compatibilityDate: "2025-07-15",
+
   devtools: { enabled: false },
 
   modules: [
-    '@nuxtjs/tailwindcss',
-    '@pinia/nuxt',
-    '@nuxtjs/turnstile',
-    '@nuxt/eslint'
+    "@nuxtjs/tailwindcss",
+    "@pinia/nuxt",
+    "@nuxtjs/turnstile",
+    "@nuxt/eslint",
   ],
 
-  css: ['@/assets/css/index.css'],
+  css: ["@/assets/css/index.css"],
 
   runtimeConfig: {
     turnstile: {
-      secretKey: process.env.TURNSTILE_SECRET_KEY, 
+      secretKey: process.env.TURNSTILE_SECRET_KEY,
     },
+
     public: {
+      apiLocal: process.env.API_LOCAL,
       apiUrl: process.env.API_URL,
       turnstile: {
-        siteKey: process.env.TURNSTILE_SITE_KEY, 
-      }
+        siteKey: process.env.TURNSTILE_SITE_KEY,
+      },
     },
-  }
-})
+  },
+});

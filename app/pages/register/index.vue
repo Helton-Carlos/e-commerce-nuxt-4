@@ -1,20 +1,39 @@
 <script setup lang="ts">
-const email = ref('');
-const name = ref('');
-const password = ref('');
+import { useApiResponse } from "@/composable/useApiResponse";
+
+const email = ref("");
+const name = ref("");
+const password = ref("");
 const isLoading = ref(false);
-const errorMessage = ref('');
-const turnstileToken = ref('');
+const errorMessage = ref("");
+const turnstileToken = ref("");
 const turnstileRef = ref();
+
+const { post } = useApiResponse();
 
 async function handleRegister() {
   if (!email.value || !name.value || !password.value || !turnstileToken.value) {
-    errorMessage.value = 'Preencha todos os campos*';
+    errorMessage.value = "Preencha todos os campos*";
     return;
   }
 
-  navigateTo('/dashboard');
-  turnstileRef.value.reset();
+  try {
+    const { data } = await useAsyncData("register", () =>
+      post("/register", {
+        email: email.value,
+        name: name.value,
+        password: password.value,
+      })
+    );
+
+    if (data.value) {
+      navigateTo("/dashboard");
+    }
+
+    turnstileRef.value.reset();
+  } catch (e) {
+    console.error("Registration error:", e);
+  }
 }
 </script>
 
@@ -33,7 +52,7 @@ async function handleRegister() {
         class="input w-full"
         placeholder="ex: bob@gmail.com"
         :disabled="isLoading"
-      >
+      />
 
       <label for="name" class="label">Nome</label>
       <input
@@ -43,7 +62,7 @@ async function handleRegister() {
         class="input w-full"
         placeholder="ex: Bob Luiz da Silva"
         :disabled="isLoading"
-      >
+      />
 
       <label for="password" class="label">Senha</label>
       <input
@@ -54,7 +73,7 @@ async function handleRegister() {
         placeholder="*********"
         :disabled="isLoading"
         @keyup.enter="handleRegister"
-      >
+      />
 
       <NuxtTurnstile
         ref="turnstileRef"
