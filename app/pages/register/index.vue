@@ -27,39 +27,39 @@ async function handleRegister() {
 
       <label for="email">Email</label>
       <input
-        type="email"
         id="email"
         v-model="email"
+        type="email"
         class="input w-full"
         placeholder="ex: bob@gmail.com"
         :disabled="isLoading"
-      />
+      >
 
       <label for="name" class="label">Nome</label>
       <input
-        type="text"
         id="name"
         v-model="name"
+        type="text"
         class="input w-full"
         placeholder="ex: Bob Luiz da Silva"
         :disabled="isLoading"
-      />
+      >
 
       <label for="password" class="label">Senha</label>
       <input
-        type="password"
         id="password"
         v-model="password"
+        type="password"
         class="input w-full"
         placeholder="*********"
         :disabled="isLoading"
         @keyup.enter="handleRegister"
-      />
+      >
 
       <NuxtTurnstile
         ref="turnstileRef"
-        class="mx-auto mt-4"
         v-model="turnstileToken"
+        class="mx-auto mt-4"
         :options="{
           theme: 'auto',
           size: 'normal',

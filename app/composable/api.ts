@@ -1,7 +1,7 @@
 export const useApi = () => {
   const config = useRuntimeConfig();
 
-  const get = async <T = any>(endpoint: string, options: any = {}) => {
+  const get = async <T = unknown>(endpoint: string, options: unknown = {}) => {
     try {
       const data = await $fetch<T>(`${config.public.apiUrl}${endpoint}`, options);
 
@@ -12,7 +12,7 @@ export const useApi = () => {
     }
   }
 
-  const post = async <T = any>(endpoint: string, body: any, options: any = {}) => {
+  const post = async <T = unknown>(endpoint: string, body: unknown, options: unknown = {}) => {
     try {
       const data = await $fetch<T>(`${config.public.apiUrl}${endpoint}`, {
         ...options,

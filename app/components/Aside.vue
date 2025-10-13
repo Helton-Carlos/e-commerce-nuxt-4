@@ -41,7 +41,7 @@ function addCart() {
       for="my-drawer"
       aria-label="close sidebar"
       class="drawer-overlay"
-    ></label>
+    />
 
     <div class="menu bg-base-200 text-base-content min-h-full w-80 p-8">
       <figure>
@@ -53,7 +53,7 @@ function addCart() {
               : product?.images
           "
           :alt="product?.title"
-        />
+        >
       </figure>
 
       <h3 class="text-base mt-2 capitalize">{{ product?.title }}</h3>
@@ -77,12 +77,12 @@ function addCart() {
             <button class="btn btn-error px-4" @click="decrement">-</button>
 
             <input
+              id="item"
+              v-model="unit"
               class="flex-1 py-2 mx-1 text-center"
               type="number"
               name="item"
-              id="item"
-              v-model="unit"
-            />
+            >
 
             <button class="btn btn-success px-4" @click="increment">+</button>
           </div>

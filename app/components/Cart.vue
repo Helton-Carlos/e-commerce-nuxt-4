@@ -33,10 +33,10 @@ defineProps<{
       tabindex="0"
       class="card card-compact dropdown-content bg-base-100 z-1 mt-3 px-2 w-[320px] shadow"
     >
-      <ul v-for="cart in carts">
+      <ul v-for="cart in carts" :key="cart.id">
         <li class="flex items-center gap-4 p-4">
           <div>
-            <img :src="cart.images[0]" class="max-w-[50px] rounded-full" />
+            <img :src="cart.images[0]" class="max-w-[50px] rounded-full" >
           </div>
           <div class="flex flex-col gap-1">
             <span class="text-sm font-bold">{{ cart.title }}</span>

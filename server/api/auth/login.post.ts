@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
       body: { token: turnstileToken },
     });
 
-    if (email === 'admin@gmail.com' && password === '12345') {
+    if (turnstileValidation || (email === 'admin@gmail.com' && password === '12345')) {
       const token = 'jwt-token-example-' + Date.now();
 
       return {

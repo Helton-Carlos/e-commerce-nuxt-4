@@ -43,29 +43,29 @@ async function handleLogin() {
 
       <label for="email">Email</label>
       <input
-        type="email"
         id="email"
         v-model="email"
+        type="email"
         class="input w-full"
         placeholder="ex: bob@gmail.com"
         :disabled="isLoading"
-      />
+      >
 
       <label for="password" class="label">Senha</label>
       <input
-        type="password"
         id="password"
         v-model="password"
+        type="password"
         class="input w-full"
         placeholder="*********"
         :disabled="isLoading"
         @keyup.enter="handleLogin"
-      />
+      >
 
       <NuxtTurnstile
         ref="turnstileRef"
-        class="mx-auto mt-4"
         v-model="turnstileToken"
+        class="mx-auto mt-4"
         :options="{
           theme: 'auto',
           size: 'normal',

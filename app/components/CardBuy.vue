@@ -22,7 +22,7 @@ function buyProduct(product: Product) {
           Array.isArray(product.images) ? product.images[0] : product.images
         "
         :alt="product.title"
-      />
+      >
     </figure>
 
     <div class="card-body">
@@ -39,7 +39,7 @@ function buyProduct(product: Product) {
       </div>
 
       <div class="drawer">
-        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+        <input id="my-drawer" type="checkbox" class="drawer-toggle" >
         <button class="drawer-content flex justify-start">
           <label
             for="my-drawer"
