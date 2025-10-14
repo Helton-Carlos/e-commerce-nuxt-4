@@ -20,5 +20,10 @@ export default defineVitestConfig({
       "pages/**/*.{test,spec}.ts",
       "composables/**/*.{test,spec}.ts",
     ],
+
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json", "html"],
+    },
   },
 });
