@@ -3,9 +3,7 @@ export const useApiResponse = () => {
 
   const get = async <T = unknown>(endpoint: string) => {
     try {
-      const data = await $fetch<T>(
-        `${config.public.apiLocal}/server/api/${endpoint}`
-      );
+      const data = await $fetch<T>(`${config.public.apiLocal}${endpoint}`);
 
       return data;
     } catch (e) {
@@ -15,13 +13,10 @@ export const useApiResponse = () => {
 
   const post = async <T = unknown>(endpoint: string, body: unknown) => {
     try {
-      const data = await $fetch<T>(
-        `${config.public.apiLocal}/server/api${endpoint}`,
-        {
-          method: "POST",
-          body,
-        }
-      );
+      const data = await $fetch<T>(`${config.public.apiLocal}${endpoint}`, {
+        method: "POST",
+        body,
+      });
 
       return data;
     } catch (e) {
