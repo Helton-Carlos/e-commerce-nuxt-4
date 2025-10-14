@@ -33,6 +33,16 @@ API_URL = 'https://api.escuelajs.co/api/v1'
 API_LOCAL = 'http://localhost:3000/server/api'
 ```
 
+**🧪 To view unit tests.** 
+
+```bash
+npm run test
+```
+
+```bash
+npm run test:coverage
+```
+
 **👇 Image.**
 
 <img width="1422" height="1070" alt="image" src="https://github.com/user-attachments/assets/8095db27-2ba1-46cf-a6c2-af6a4405d054" />
