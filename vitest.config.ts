@@ -8,7 +8,11 @@ export default defineVitestConfig({
       nuxt: {
         runtimeConfig: {
           public: {
-            NUXT_PUBLIC_TURNSTILE_SITE_KEY: "mock-key-para-teste",
+            apiLocal: process.env.API_LOCAL,
+            apiUrl: process.env.API_URL,
+            turnstile: {
+              siteKey: process.env.TURNSTILE_SITE_KEY,
+            },
           },
         },
       },
@@ -16,9 +20,9 @@ export default defineVitestConfig({
 
     include: [
       "__test__/*.{test,spec}.ts",
-      "components/**/*.{test,spec}.ts",
-      "pages/**/*.{test,spec}.ts",
-      "composables/**/*.{test,spec}.ts",
+      "__test__/components/**/*.{test,spec}.ts",
+      "__test__/pages/**/*.{test,spec}.ts",
+      "__test__/composables/**/*.{test,spec}.ts",
     ],
 
     coverage: {
