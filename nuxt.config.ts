@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/turnstile",
     "@nuxt/eslint",
+    "@nuxt/test-utils/module",
   ],
 
   css: ["@/assets/css/index.css"],
