@@ -17,7 +17,7 @@
       </nav>
     </div>
 
-    <div class="text-center mt-5 py-2">
+    <div class="text-center mt-5 py-2" data-testid="date-footer">
       Todos os direitos reservados &copy; {{ new Date().getFullYear() }}
     </div>
   </footer>
