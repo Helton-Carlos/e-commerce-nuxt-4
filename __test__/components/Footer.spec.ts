@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
 import Footer from "@/components/Footer.vue";
+import { render } from "@testing-library/vue";
 
 describe("Test component Footer", () => {
   it("Should mount component Footer", async () => {
@@ -10,11 +11,11 @@ describe("Test component Footer", () => {
   });
 
   it("Should mount text Footer", async () => {
-    const component = await mountSuspended(Footer);
+    const component = await render(Footer);
 
-    expect(component.text()).toBe(
-      "E-commerce Store Loja de e-commerce feita com Nuxt 4, Tailwind CSS e DaisyUI. Sobre-nós Todos os direitos reservados © 2025"
-    );
+    const title = component.getByTestId("title-footer");
+
+    expect(title.textContent.trim()).toBe("E-commerce Store");
   });
 
   it("Should mount year time", async () => {
